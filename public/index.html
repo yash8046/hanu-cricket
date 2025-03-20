@@ -284,71 +284,80 @@
         footer a:hover {
             color: #ff9900;
         }
-        /* Mobile Responsiveness */
+      
+.menu-toggle {
+    display: none; /* Hidden by default on larger screens */
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    z-index: 1100;
+    cursor: pointer;
+}
+.nav-links .close-menu {
+    display: none;
+}
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
-    .logo {
-        font-size: 1.2rem;
+    nav {
+        flex-direction: row;
+        position: relative;
     }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .nav-links a {
-        padding: 0.5rem 1rem;
-        font-size: 14px;
-    }
-
-    .hero {
-        padding: 15vh 20px;
-    }
-
-    .hero h1 {
-        font-size: clamp(24px, 6vw, 36px);
-    }
-
-    .hero p {
-        font-size: clamp(16px, 4vw, 20px);
-    }
-
-    .hero button {
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-
-    .summer-camp, .high-performance-programs {
-        padding: 40px 20px;
-        margin: 10px;
-    }
-
-    .summer-camp h2, .high-performance-programs h2 {
-        font-size: 24px;
-    }
-
-    .summer-camp ul li, .high-performance-programs p {
-        font-size: 16px;
-    }
-    .nav-links {
-        display: none; /* Hide menu by default */
-        flex-direction: column;
+    .nav-links .close-menu {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
         position: absolute;
-        top: 60px;
-        right: 10px;
-        background: rgba(0, 77, 153, 0.9);
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        width: 200px;
+        top: 10px;
+        right: 15px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .nav-links .close-menu:hover {
+       color: rgba(50, 132, 214, 0.9);
+    }
+    .nav-links {
+        padding-top: 100px;
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: rgba(50, 132, 214, 0.9);
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+        padding: 60px 20px 20px; /* Add padding-top for the close button */
+        gap: 10px;
+        z-index: 1000;
+    }
+    .nav-links a {
+        margin-top: 10px; /* Add spacing between menu items for better clarity */
+        text-align: left; /* Align menu items */
     }
 
     .nav-links.show {
-        display: flex; /* Show when active */
+        display: flex;
+    }
+    .nav-links.show {
+        display: flex;
     }
 
-    .menu-icon {
-        display: block; /* Show hamburger icon */
+    .menu-toggle {
+        display: block; /* Visible on mobile */
     }
+
+    .menu-toggle.hidden {
+        display: none; /* Hidden when menu is open */
+    }
+  
+
 }
     </style>
 </head>
@@ -356,15 +365,16 @@
     <nav>
         <div class="logo">
             <img src="logo.png" alt="Hanu Logo" class="logo-image" />
-            Crickey
+            Hanu Cricket Academy
         </div>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <button class="menu-toggle" id="menu-toggle">&#9776;</button>
         <div class="nav-links">
+            <button class="close-menu hidden" id="close-menu">&times;</button>
             <a href="#home">Home</a>
             <a href="#services">Coaches</a>
             <a href="#services">Contact</a>
             <a href="#about">About Us</a>
-            <a href="#about">Login/Sign Up</a>
+            <a href="login.html">Login/Sign Up</a>
         </div>
     </nav>
 
@@ -410,11 +420,80 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
-  function toggleMenu() {
-    document.querySelector(".nav-links").classList.toggle("show");
-}
- document.addEventListener("DOMContentLoaded", function () {
-    // Initialize Flatpickr
+document.addEventListener("DOMContentLoaded", function () {
+    // Menu Toggle Logic
+    const menuToggle = document.getElementById("menu-toggle");
+    const closeMenu = document.getElementById("close-menu");
+    const navLinks = document.getElementById("nav-links");
+
+    if (menuToggle && closeMenu && navLinks) {
+        // Show the menu
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.add("show");
+            menuToggle.classList.add("hidden");
+        });
+
+        // Hide the menu using the close button
+        closeMenu.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+            menuToggle.classList.remove("hidden");
+        });
+
+        // Optional: Clicking outside the menu to close it
+        document.addEventListener("click", (event) => {
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove("show");
+                menuToggle.classList.remove("hidden");
+            }
+        });
+    }
+
+    // Calendar Popup Logic
+    const calendarContainer = document.getElementById("calendar-container");
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+
+    if (calendarContainer) {
+        const calendar = flatpickr("#calendar", {
+            inline: true, // Display calendar inline
+            minDate: "2025-05-15", // Minimum selectable date
+            maxDate: "2025-08-15", // Maximum selectable date
+            dateFormat: "Y-m-d", // Date format
+            onChange: function (selectedDates, dateStr) {
+                alert("You selected: " + dateStr); // Handle selected date
+                hideCalendar(); // Hide calendar after selection
+            },
+        });
+
+        // Show calendar when "Join Now" button is clicked
+        const joinNowButton = document.getElementById("joinNowButton");
+        if (joinNowButton) {
+            joinNowButton.addEventListener("click", function () {
+                calendarContainer.classList.add("visible");
+                overlay.classList.add("visible");
+            });
+        }
+
+        // Hide calendar when clicking outside
+        overlay.addEventListener("click", function () {
+            hideCalendar();
+        });
+
+        function hideCalendar() {
+            calendarContainer.classList.remove("visible");
+            overlay.classList.remove("visible");
+        }
+    }
+});
+
+// Calendar Popup Logic
+document.addEventListener("DOMContentLoaded", function () {
+    const calendarContainer = document.getElementById("calendar-container");
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+
     const calendar = flatpickr("#calendar", {
         inline: true, // Display calendar inline
         minDate: "2025-05-15", // Minimum selectable date
@@ -422,12 +501,45 @@
         dateFormat: "Y-m-d", // Date format
         onChange: function (selectedDates, dateStr) {
             alert("You selected: " + dateStr); // Handle selected date
+            hideCalendar(); // Hide calendar after selection
         },
     });
 
-    // Open calendar when "Join Now" button is clicked
+    // Show calendar when "Join Now" button is clicked
     document.getElementById("joinNowButton").addEventListener("click", function () {
-        calendar.open();
+        calendarContainer.classList.add("visible");
+        overlay.classList.add("visible");
+        
     });
+
+    // Hide calendar when clicking outside
+    overlay.addEventListener("click", function () {
+        hideCalendar();
+    });
+
+    function hideCalendar() {
+        calendarContainer.classList.remove("visible");
+        overlay.classList.remove("visible");
+    }
 });
+async function checkAuthStatus() {
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (session) {
+      account.textContent = 'Sign Out';
+      account.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        alert('Signed out successfully!');
+        window.location.href = "index.html";
+        // Redirect to login page after sign-out
+      });
+    } else {
+      account.textContent = 'Sign Up/Log In';
+      account.addEventListener('click', () => {
+        window.location.href = 'login.html'; // Redirect to login page
+      });
+    }
+  }
+
+  checkAuthStatus();
 </script>
