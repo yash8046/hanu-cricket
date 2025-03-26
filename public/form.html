@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Registration | Core Cricket Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --primary-light: #2a5298;
+            --accent: #ffcc00;
+            --text: #333333;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --border-radius: 8px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(248, 249, 250, 0.9);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-sm);
+            background-image: url('https://images.unsplash.com/photo-1543357486-c2505d6d1143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .registration-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.8), rgba(30, 60, 114, 0.6));
+            border-radius: var(--border-radius);
+            z-index: 0;
+        }
+
+        .registration-header h1 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .registration-header p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .registration-form {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .form-decoration-1 {
+            top: -50px;
+            right: -50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/5022/5022019.png') no-repeat;
+            background-size: contain;
+        }
+
+        .form-decoration-2 {
+            bottom: -50px;
+            left: -50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/5022/5022026.png') no-repeat;
+            background-size: contain;
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group .required {
+            color: #dc3545;
+            margin-left: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .char-counter {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .char-counter.warning {
+            color: #ff9800;
+        }
+
+        .char-counter.error {
+            color: #f44336;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-option input {
+            margin-right: 8px;
+        }
+
+        .dob-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .dob-field {
+            flex: 1;
+        }
+
+        .form-section-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .form-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        .pricing-section {
+    background-color: rgba(255, 204, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 30px 0;
+    border-left: 4px solid var(--accent);
+}
+        .pricing-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-title i {
+            color: var(--accent);
+        }
+
+        .pricing-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-option {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .pricing-option h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .pricing-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .pricing-duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .date-selection-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
+        }
+
+        .date-selection-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .selected-dates {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(30, 60, 114, 0.05);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--accent);
+        }
+
+        .selected-dates p {
+            margin-bottom: 5px;
+        }
+
+        .selected-dates strong {
+            color: var(--primary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .calendar-container {
+            margin: 20px 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dob-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .pricing-options {
+                flex-direction: column;
+            }
+
+            .pricing-option {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="registration-header">
+            <h1>Player Registration</h1>
+            <p>Join Core Cricket Academy and take your game to the next level. Please fill out all required fields carefully.</p>
+        </div>
+
+        <form class="registration-form" id="playerRegistrationForm">
+            <div class="form-decoration form-decoration-1"></div>
+            <div class="form-decoration form-decoration-2"></div>
+            
+            <div class="form-content">
+                <h2 class="form-section-title">Player Information</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" id="middleName" class="form-control" placeholder="Enter middle name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span class="required">*</span></label>
+                        <div class="dob-container">
+                            <div class="dob-field">
+                                <input type="date" id="dob" class="form-control" required>
+                            </div>
+                            <div class="dob-field">
+                                <input type="number" id="age" class="form-control" placeholder="Age" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender <span class="required">*</span></label>
+                        <div class="gender-options">
+                            <div class="gender-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jerseyId">Preferred Jersey Number</label>
+                        <input type="number" id="jerseyId" class="form-control" placeholder="Enter preferred number" min="1" max="99">
+                    </div>
+                </div>
+
+                <h2 class="form-section-title">Parent/Guardian Information</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="parentName">Parent/Guardian Name <span class="required">*</span></label>
+                        <input type="text" id="parentName" class="form-control" placeholder="Full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address <span class="required">*</span></label>
+                        <input type="text" id="address" class="form-control" placeholder="Street address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Contact Phone <span class="required">*</span></label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+1 (123) 456-7890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Contact Email <span class="required">*</span></label>
+                        <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h3 class="pricing-title"><i class="fas fa-tag"></i> Training Program Pricing</h3>
+                    <div class="pricing-options">
+                        <div class="pricing-option">
+                            <h4>Weekly Program</h4>
+                            <div class="pricing-amount">$275</div>
+                            <div class="pricing-duration">per week</div>
+                        </div>
+                        <div class="pricing-option">
+                            <h4>Monthly Program</h4>
+                            <div class="pricing-amount">$950</div>
+                            <div class="pricing-duration">per month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Training Dates <span class="required">*</span></label>
+                    <button type="button" class="date-selection-btn" id="openDateModal">
+                        <i class="far fa-calendar-alt"></i> Choose Dates
+                    </button>
+                    <div class="selected-dates" id="selectedDatesDisplay">
+                        <p>No dates selected yet</p>
+                        <p><strong>Please select exactly 2 dates between May 15 and August 15</strong></p>
+                    </div>
+                </div>
+
+                <h2 class="form-section-title">Additional Information</h2>
+                <div class="form-group">
+                    <label for="notes">Notes for the Coaching Team</label>
+                    <textarea id="notes" class="form-control" rows="4" placeholder="Any medical conditions, special requirements, or other information our coaches should know (max 250 characters)" maxlength="250"></textarea>
+                    <div id="charCounter" class="char-counter">0/250 characters</div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    <button type="submit" class="btn btn-primary">Submit Registration</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Date Selection Modal -->
+    <div class="modal" id="dateModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeDateModal">&times;</span>
+            <h3 class="modal-title">Select Training Dates</h3>
+            <p>Please select exactly 2 dates between May 15 and August 15 for your training sessions.</p>
+            
+            <div class="calendar-container">
+                <input type="text" id="trainingDates" style="display: none;">
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancelDateSelection">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmDates">Confirm Dates</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        
+        // Character counter for notes field
+        const notesField = document.getElementById('notes');
+        const charCounter = document.getElementById('charCounter');
+
+        notesField.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            charCounter.textContent = `${currentLength}/250 characters`;
+            
+            // Change color based on length
+            if (currentLength > 200) {
+                charCounter.classList.add('warning');
+                charCounter.classList.remove('error');
+            } else if (currentLength > 230) {
+                charCounter.classList.remove('warning');
+                charCounter.classList.add('error');
+            } else {
+                charCounter.classList.remove('warning', 'error');
+            }
+        });
+
+        // Calculate age from DOB
+        const dobField = document.getElementById('dob');
+        const ageField = document.getElementById('age');
+
+        dobField.addEventListener('change', function() {
+            const dob = new Date(this.value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            
+            ageField.value = age > 0 ? age : '';
+        });
+
+        // Date selection modal
+        const dateModal = document.getElementById('dateModal');
+        const openDateModalBtn = document.getElementById('openDateModal');
+        const closeDateModalBtn = document.getElementById('closeDateModal');
+        const cancelDateSelectionBtn = document.getElementById('cancelDateSelection');
+        const confirmDatesBtn = document.getElementById('confirmDates');
+        const selectedDatesDisplay = document.getElementById('selectedDatesDisplay');
+
+        // Initialize calendar
+        const datePicker = flatpickr("#trainingDates", {
+            mode: "multiple",
+            minDate: "2025-05-15",
+            maxDate: "2025-08-15",
+            dateFormat: "Y-m-d",
+            defaultDate: [],
+            onChange: function(selectedDates, dateStr, instance) {
+                // Validate exactly 2 dates selected
+                if (selectedDates.length > 2) {
+                    instance.setDate(selectedDates.slice(0, 2), true);
+                    alert('Please select exactly 2 dates');
+                }
+            }
+        });
+
+        // Open modal
+        openDateModalBtn.addEventListener('click', function() {
+            dateModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        });
+
+        // Close modal
+        function closeModal() {
+            dateModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        closeDateModalBtn.addEventListener('click', closeModal);
+        cancelDateSelectionBtn.addEventListener('click', closeModal);
+
+        // Confirm dates
+        confirmDatesBtn.addEventListener('click', function() {
+            const selectedDates = datePicker.selectedDates;
+            
+            if (selectedDates.length !== 2) {
+                alert('Please select exactly 2 dates');
+                return;
+            }
+            
+            // Format dates for display
+            const formattedDates = selectedDates.map(date => {
+                return new Intl.DateTimeFormat('en-US', { 
+                    weekday: 'short', 
+                    month: 'short', 
+                    day: 'numeric',
+                    year: 'numeric'
+                }).format(date);
+            });
+            
+            // Calculate duration between dates
+            const diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            // Calculate price
+            let price;
+            let durationType;
+            
+            if (diffDays <= 7) {
+                price = 275;
+                durationType = 'Weekly';
+            } else {
+                price = 950;
+                durationType = 'Monthly';
+            }
+            
+            // Update display
+            selectedDatesDisplay.innerHTML = `
+                <p><strong>Selected Dates:</strong> ${formattedDates[0]} and ${formattedDates[1]}</p>
+                <p><strong>Duration:</strong> ${diffDays} days (${durationType} Program)</p>
+                <p><strong>Price:</strong> $${price}</p>
+            `;
+            
+            closeModal();
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === dateModal) {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        const registrationForm = document.getElementById('playerRegistrationForm');
+
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Form validation
+            if (!this.checkValidity()) {
+                alert('Please fill out all required fields correctly.');
+                return;
+            }
+            
+            // Check if dates are selected
+            const selectedDates = datePicker.selectedDates;
+            if (selectedDates.length !== 2) {
+                alert('Please select exactly 2 training dates');
+                return;
+            }
+            
+            // Form is valid - process submission
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Add selected dates to form data
+            formObject['trainingDates'] = selectedDates.map(date => date.toISOString().split('T')[0]);
+            
+            console.log('Form data:', formObject);
+            
+            // Here you would typically send the data to your server
+            alert('Registration submitted successfully! We will contact you soon.');
+            this.reset();
+            charCounter.textContent = '0/250 characters';
+            charCounter.classList.remove('warning', 'error');
+            selectedDatesDisplay.innerHTML = '<p>No dates selected yet</p><p><strong>Please select exactly 2 dates between May 15 and August 15</strong></p>';
+            datePicker.clear();
+        });
+    </script>
+</body>
+</html>

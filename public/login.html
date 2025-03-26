@@ -3,240 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Login | Hanu Cricket Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-attachment: scroll; /* Change from fixed to scroll */
-    
-}
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -1;
-}
-
-@media (max-width: 1024px) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;
-    }
-}
-@media only screen and (min-device-pixel-ratio: 3), 
-       only screen and (min-resolution: 192dpi) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;
-    }
-}
-
-/* Large phones, such as iPhone 15 Pro Max in portrait mode */
-@media (max-width: 1290px) and (min-width: 768px) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;
-    }
-}
-/* For devices with width 768px and smaller */
-@media (max-width: 768px) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed;background-size: cover;
-    }
-}
-
-/* For devices with width 480px and smaller */
-@media (max-width: 480px) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;
-    }
-}
-
-/* For devices with width 320px and smaller */
-@media (max-width: 320px) {
-    body {
-        background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;
-    }
-}
-
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-dark: #111827;
+            --success: #10b981;
+            --error: #ef4444;
+            --border-radius: 12px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-                .logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-}
-.logo img {
-    width: 10%; /* Makes it responsive */
-    max-width: 40px; /* Ensures it doesn’t get too large */
-    height: auto;
-}
-.header-link {
-    text-decoration: none; /* Removes underline from the link */
-    color: inherit; /* Inherits text color */
-    display: block; /* Ensures the link covers the entire header */
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-.header-link:hover {
-    cursor: pointer; /* Changes cursor to indicate it's clickable */
-}
-
-.card {
-      width: 100%;
-      max-width: 400px;
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      padding: 30px;
-      text-align: center;
-    }
-
-    .card h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #ffffff;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-      width: 93%;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-      background: #f9f9f9;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
-    }
-
-    .error {
-      color: #ef4444;
-      font-size: 0.875rem;
-      margin-bottom: 1rem;
-    }
-
-    .button {
-      width: 100%;
-      padding: 12px;
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .button:hover {
-      background-color: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .button:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
-
-    .forgot-password {
-      display: block;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .forgot-password:hover {
-      text-decoration: underline;
-    }
-    
-    body::before {
-            content: '';
+        .background-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://media-hosting.imagekit.io//30106a062643411c/1737847924678.jpg?Expires=1832456046&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BzPc4XyvJPH7fWgQ816RNzbhADDjk~7Pf7NLZgP7n3gsr9L9iNUD8PA595Fgx16nBoR7o2t6o8p-gRgQWrgmu8cPsiNIJ2q31BvXquTNOMoabOV-5~nwSplB3zxHWNNs~ipVr1Mn~7nNS2PE~VyMh1tasHL6ZpomtBPQndk1~I9XbZeR-uy167ZSW1kDhQrdmQhUssEel2ElzdazmTg7q71DVj8-fTJyqUOcAzXi0qPIqYQawBUGQjIVya6eXlF5iSQhp5Sffj0rHQUcVzoxJFc3rrzyrG1ZreFzqxF563APVJYKBqPsvz7kiKvnpIT3iC6Ue92e6M1Shz6qJL9ZJw__') no-repeat center center fixed; background-size: cover;  background-size: cover;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
             z-index: -1;
         }
 
         header {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 1rem;
-            text-align: center;
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 24px;
-            font-weight: bold;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.25rem;
         }
 
         .logo img {
             width: 40px;
-            height: auto;
-            margin-right: 10px;
+            height: 40px;
+            object-fit: contain;
         }
 
-        /* Card Styling */
-        .card {
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            display: flex;
+            max-width: 1000px;
             width: 100%;
-            max-width: 400px;
-            margin: 2rem auto;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 16px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .login-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: none;
+        }
+
+        .login-form {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            margin-bottom: 2rem;
             text-align: center;
         }
 
-        .card h1 {
+        .login-header h1 {
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            font-size: 0.875rem;
         }
 
         .form-group {
@@ -245,291 +137,393 @@ body::before {
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: #f9f9f9;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
-        }
-
-        .error {
-            color: #ef4444;
             font-size: 0.875rem;
-            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
 
-        .button {
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
             width: 100%;
-            padding: 12px;
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            padding: 0.875rem 1rem 0.875rem 2.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            transition: var(--transition);
+            background-color: var(--bg-light);
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: var(--transition);
+            border: none;
         }
 
-        .button:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            width: 100%;
         }
 
-        .button:active {
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
             transform: translateY(0);
-            box-shadow: none;
         }
 
-        .forgot-password {
-            display: block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #2563eb;
+        .form-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .form-footer a {
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
         }
 
-        .forgot-password:hover {
+        .form-footer a:hover {
             text-decoration: underline;
         }
 
-        footer {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%; /* Ensure it spans the full width of the page */
-}
-.create-account {
-        display: block;
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        color: #34d399; /* A bright green shade */
-        text-decoration: none;
-        font-weight: 500;
-        text-align: center; /* Align text to center */
-    }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: var(--text-light);
+            font-size: 0.75rem;
+        }
 
-    .create-account:hover {
-        text-decoration: underline;
-        color: #059669; /* Darker green for hover */
-    }
-        .social-media-links {
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .divider::before {
+            margin-right: 0.5rem;
+        }
+
+        .divider::after {
+            margin-left: 0.5rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background-color: var(--bg-light);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .social-link img {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .social-link img:hover {
-            transform: scale(1.2);
+        .footer-links a:hover {
+            color: var(--accent);
         }
-        @media (max-width: 768px) {
-    header {
-        font-size: 18px;
-        padding: 0.8rem;
-    }
 
-    .card {
-        width: 95%;
-        margin: 1.5rem auto;
-        padding: 20px;
-    }
+        .copyright {
+            color: #9ca3af;
+        }
 
-    .card h1 {
-        font-size: 1.8rem;
-    }
+        /* Alert styles */
+        .alert-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--bg-dark);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            z-index: 1000;
+            animation: slideDown 0.3s ease-out;
+            display: none;
+        }
 
-    .button {
-        font-size: 1rem;
-    }
-}
+        .alert-message {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-/* For devices with width 480px and smaller */
-@media (max-width: 480px) {
-    header {
-        font-size: 16px;
-        padding: 0.5rem;
-    }
+        .alert-success {
+            color: var(--success);
+        }
 
-    .logo img {
-        width: 30px;
-    }
+        .alert-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            margin-left: 1rem;
+        }
 
-    .card {
-        width: 90%;
-        padding: 15px;
-    }
+        .alert-close:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-    .card h1 {
-        font-size: 1.5rem;
-    }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
 
-    .form-group label {
-        font-size: 0.9rem;
-    }
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .login-image {
+                display: block;
+            }
 
-    .form-group input {
-        font-size: 0.9rem;
-        padding: 10px;
-        width: 93%;
-    }
+            .login-header h1 {
+                font-size: 2.25rem;
+            }
+        }
 
-    .button {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
+        @media (max-width: 480px) {
+            .login-form {
+                padding: 2rem 1.5rem;
+            }
 
-    footer {
-        font-size: 0.8rem;
-    }
-    .alert-container {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #000;
-      color: #fff;
-      padding: 16px 24px;
-      border-radius: 16px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-width: 300px;
-      z-index: 1000;
-      animation: slideDown 0.3s ease-out;
-    }
-    .alert-message {
-      font-size: 14px;
-    }
-    .alert-close {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 50%;
-      transition: background-color 0.2s;
-    }
-    .alert-close:hover {
-      background-color: #444;
-    }
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -20px);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-      }
-    }
-}
+            .header-container, .footer-container {
+                padding: 0 1rem;
+            }
 
+            .social-login {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" class="header-link">
-            <div class="logo">
-                <img src="logo.png" alt="Hanu Logo" class="logo-image" />
-                Hanu Cricket Academy
-            </div>
-        </a>
-    </header>
-    <div class="card">
-        <h1>Login</h1>
-        <form id="loginForm">
-          <div id="error" class="error"></div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" required>
-          </div>
-          <button type="submit" class="button">Login</button>
-          <a href="#" class="forgot-password">Forgot your password?</a>
-          <a href="signup.html" class="create-account">Create New Account</a>
-        </form>
-      </div>
-      <div id="custom-alert" class="alert-container" style="display: none;">
-        <span class="alert-message">Log In Successfull!</span>
-        <button class="alert-close" onclick="closeAlert()">×</button>
-      </div>
-      <!-- Supabase script -->
-      <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-        const supabaseUrl = 'https://orfycpfjapospjxuugco.supabase.co'; // Replace with your Supabase URL
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yZnljcGZqYXBvc3BqeHV1Z2NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1MDE3NjUsImV4cCI6MjA1ODA3Nzc2NX0.LCMoosnUFiQBkbETCJCxHWytPU_HppEHYI5f_SxlGDg'; // Replace with your Supabase anon key
-        const supabase = createClient(supabaseUrl, supabaseKey);
+    <div class="background-overlay"></div>
     
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Hanu Cricket Academy Logo">
+                Hanu Cricket Academy
+            </a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="login-container">
+            <div class="login-image"></div>
+            
+            <div class="login-form">
+                <div class="login-header">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to access your account and continue your cricket journey</p>
+                </div>
+
+                <form id="loginForm">
+                    <div id="error" class="error-message"></div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Sign In
+                    </button>
+
+                    <div class="form-footer">
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                        <span class="divider">or</span>
+                        <p>Don't have an account? <a href="signup.html" class="create-account">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Programs</a>
+                <a href="#">Coaches</a>
+                <a href="#">Facilities</a>
+                <a href="#">Contact</a>
+            </div>
+            <p class="copyright">© 2023 Hanu Cricket Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="custom-alert" class="alert-container">
+        <span class="alert-message">
+            <i class="fas fa-check-circle alert-success"></i>
+            Login successful!
+        </span>
+        <button class="alert-close" onclick="closeAlert()">×</button>
+    </div>
+
+    <!-- Supabase script -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+        const supabaseUrl = 'https://orfycpfjapospjxuugco.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yZnljcGZqYXBvc3BqeHV1Z2NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI1MDE3NjUsImV4cCI6MjA1ODA3Nzc2NX0.LCMoosnUFiQBkbETCJCxHWytPU_HppEHYI5f_SxlGDg';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
         // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
-          event.preventDefault();
-    
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          const errorDiv = document.getElementById('error');
-    
-          errorDiv.textContent = '';
-    
-          if (!email || !password) {
-            errorDiv.textContent = 'Please fill in all fields.';
-            return;
-          }
-    
-          try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-              email: email,
-              password: password
-            });
-    
-            if (error) {
-              errorDiv.textContent = 'Invalid email or password.';
-            } else {
-              showAlert();
-              function showAlert() {
-      const alertBox = document.getElementById('custom-alert');
-      alertBox.style.display = 'flex';
-    }
-              console.log('User data:', data);
-              window.location.href = 'index.html';
-            }
-          } catch (err) {
-            errorDiv.textContent = 'An error occurred. Please try again later.';
-            console.error(err);
-          }
-        });
-      </script>
+            event.preventDefault();
 
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+
+            errorDiv.textContent = '';
+            errorDiv.style.display = 'none';
+
+            if (!email || !password) {
+                errorDiv.textContent = 'Please fill in all fields.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) {
+                    errorDiv.textContent = 'Invalid email or password.';
+                    errorDiv.style.display = 'block';
+                } else {
+                    showAlert();
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                }
+            } catch (err) {
+                errorDiv.textContent = 'An error occurred. Please try again later.';
+                errorDiv.style.display = 'block';
+                console.error(err);
+            }
+        });
+
+        function showAlert() {
+            const alertBox = document.getElementById('custom-alert');
+            alertBox.style.display = 'flex';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+
+        function closeAlert() {
+            document.getElementById('custom-alert').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
