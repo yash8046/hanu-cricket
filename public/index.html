@@ -398,13 +398,15 @@
         /* Coaches Section */
         .coaches {
             background-color: var(--white);
+            overflow-x: auto; /* Enable horizontal scrolling */
+            padding-bottom: 20px; /* Add space for scrollbar */
         }
 
         .coaches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: nowrap; /* Prevent wrapping to new lines */
+    gap: 20px; /* Space between cards */
+    padding: 10px 0; /* Add some padding */
         }
 
         .coach-card {
@@ -414,7 +416,22 @@
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
             text-align: center;
+            flex: 0 0 auto; /* Don't grow or shrink, base on content */
+            width: 280px; /* Fixed width for each card (adjust as needed) */
         }
+        /* Optional: Hide scrollbar for a cleaner look (but keep functionality) */
+.coaches::-webkit-scrollbar {
+    height: 8px;
+}
+
+.coaches::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.coaches::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
 
         .coach-card:hover {
             transform: translateY(-10px);
@@ -1242,11 +1259,11 @@ textarea.form-control {
             <div class="coaches-grid">
                 <div class="coach-card">
                     <div class="coach-img">
-                        <img src="images/aditya.jpeg" alt="Coach John Smith">
+                        <img src="images/srikant.jpeg" alt="Srikanth Reddy">
                     </div>
                     <div class="coach-content">
-                        <h3 class="coach-name">Aditya Gupta</h3>
-                        <p class="coach-role">Head Coach</p>
+                        <h3 class="coach-name">Srikanth Reddy</h3>
+                        <p class="coach-role">All Rounder</p>
                         <p class="coach-bio">Former international bowler with 10 years of coaching experience at national level.</p>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1255,14 +1272,29 @@ textarea.form-control {
                         </div>
                     </div>
                 </div>
-                
+                 
                 <div class="coach-card">
                     <div class="coach-img">
-                        <img src="images/manish.jpeg" alt="Coach Sarah Johnson">
+                        <img src="images/krishna.png" alt="Coach Sarah Johnson">
                     </div>
                     <div class="coach-content">
-                        <h3 class="coach-name">Manish Kumar</h3>
+                        <h3 class="coach-name">Murali Krishna Ankaraju </h3>
                         <p class="coach-role">Batting Specialist</p>
+                        <p class="coach-bio">Former national team batter with a focus on technical batting skills and mental preparation.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="coach-card">
+                    <div class="coach-img">
+                        <img src="images/sunny.png" alt="Coach Sarah Johnson">
+                    </div>
+                    <div class="coach-content">
+                        <h3 class="coach-name">Sunny Kesireddy </h3>
+                        <p class="coach-role">All Rounder</p>
                         <p class="coach-bio">Former national team batter with a focus on technical batting skills and mental preparation.</p>
                         <div class="social-links">
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1274,10 +1306,10 @@ textarea.form-control {
                 
                 <div class="coach-card">
                     <div class="coach-img">
-                        <img src="images/prabhat.png" alt="Coach Michael Brown">
+                        <img src="images/goutam.jpeg" alt="Goutham Nedunuri">
                     </div>
                     <div class="coach-content">
-                        <h3 class="coach-name">Prabhat Gundepali</h3>
+                        <h3 class="coach-name">Srikanth Reddy</h3>
                         <p class="coach-role">Fielding & Fitness</p>
                         <p class="coach-bio">Strength and conditioning expert with specialized fielding drills for all levels.</p>
                         <div class="social-links">
