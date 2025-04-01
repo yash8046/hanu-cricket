@@ -813,6 +813,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 50px;
+            
         }
 
         .gallery-item {
@@ -956,7 +957,62 @@
                 font-size: 2.2rem;
             }
         }
+/* Floating Join Now Button */
+.floating-join-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background-color: #FF6B00; /* Vibrant orange - change to your brand color */
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
 
+.floating-join-btn i {
+    transition: transform 0.3s ease;
+}
+
+.floating-join-btn:hover {
+    background-color: #E05D00; /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating-join-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Pulsing animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 0, 0);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    .floating-join-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
     </style>
 </head>
 <body>
@@ -965,7 +1021,7 @@
         <div class="container header-container">
             <a href="index.html" class="logo">
                 <img src="logo.png" alt="Core Cricket Academy Logo">
-                <span>KidFit Cricket Academy</span>
+                <span>American Cricket Academy</span>
             </a>
             
             <button class="menu-toggle" id="menu-toggle">
@@ -986,7 +1042,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <h1 class="hero-title">KidFit Cricket Academy</h1>
+            <h1 class="hero-title">American Cricket Academy</h1>
             <p class="hero-subtitle">Develop your skills with world-class coaching and state-of-the-art facilities</p>
             <div class="hero-btns">
                 <a href="#programs" class="btn btn-primary" id="joinNowBtn">View Programs</a>
@@ -994,11 +1050,14 @@
             </div>
         </div>
     </section>
-
+<!-- Add this anywhere in your body (right before closing </body> is ideal) -->
+<a href="form.html" class="floating-join-btn">
+    Join Now <i class="fas fa-arrow-right"></i>
+</a>
   <!-- Update the Features Section -->
 <section class="section features">
     <div class="container">
-        <h2 class="section-title">Why Choose Core Cricket</h2>
+        <h2 class="section-title">Why Choose American Cricket Academy</h2>
         <p class="section-subtitle">We provide the perfect environment for cricketers of all levels with our exceptional facilities and expert coaching</p>
         
         <div class="features-grid">
@@ -1040,7 +1099,7 @@
 <!-- Add New Facilities Section -->
 <section class="section facilities" style="background-color: var(--light-bg);">
     <div class="container">
-        <h2 class="section-title">Our World-Class Facilities</h2>
+        <h2 class="section-title">Your World-Class Facilities</h2>
         <p class="section-subtitle">Train at some of the best cricket facilities in the region</p>
         
         <div class="facilities-grid">
@@ -1253,9 +1312,40 @@ textarea.form-control {
     <!-- Coaches Section -->
     <section class="section coaches" id="coaches">
         <div class="container">
-            <h2 class="section-title">Meet Our Coaches</h2>
-            <p class="section-subtitle">Learn from the best in the business with our team of experienced professionals</p>
-            
+            <h2 class="section-title">Meet Your Coaches</h2>
+            <p class="section-subtitle">Coaching Plan Designed By Joby Martins</p>
+            <div class="coaches-grid">
+                <div class="coach-card">
+                    <div class="coach-img">
+                        <img src="images/martins.jpg" alt="Jody Martins">
+                    </div>
+                    <div class="coach-content">
+                        <h3 class="coach-name">Jody Martins</h3>
+                        <p class="coach-role">All Rounder</p>
+                        <p class="coach-bio">Former international bowler with 10 years of coaching experience at national level.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="coaches-grid">
+                    <div class="coach-card">
+                        <div class="coach-img">
+                            <img src="images/mahabir.jpg" alt="Ivy Mahabir">
+                        </div>
+                        <div class="coach-content">
+                            <h3 class="coach-name">Ivy Mahabir</h3>
+                            <p class="coach-role">All Rounder</p>
+                            <p class="coach-bio">Former international bowler with 10 years of coaching experience at national level.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
             <div class="coaches-grid">
                 <div class="coach-card">
                     <div class="coach-img">
@@ -1730,6 +1820,7 @@ textarea.form-control {
         document.addEventListener('DOMContentLoaded', function() {
             checkAuthStatus();
         });
+        
     </script>
 </body>
 </html>
