@@ -267,13 +267,15 @@
             height: 2px;
             background-color: var(--primary);
         }
+
         .pricing-section {
-    background-color: rgba(255, 204, 0, 0.1);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    margin: 30px 0;
-    border-left: 4px solid var(--accent);
-}
+            background-color: rgba(255, 204, 0, 0.1);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 4px solid var(--accent);
+        }
+
         .pricing-title {
             font-size: 1.1rem;
             color: var(--primary);
@@ -450,13 +452,72 @@
                 min-width: 100%;
             }
         }
+
+        /* Add this to your existing CSS */
+        .flatpickr-calendar {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-md);
+            border-radius: var(--border-radius);
+        }
+
+        .flatpickr-day {
+            border-radius: 50%;
+        }
+
+        .flatpickr-day.selected {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .flatpickr-day.today {
+            border-color: var(--accent);
+        }
+
+        .flatpickr-day.today:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .flatpickr-months .flatpickr-month {
+            color: var(--primary);
+        }
+
+        .flatpickr-weekdays {
+            background: var(--primary);
+        }
+
+        .flatpickr-weekday {
+            color: white;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .btn-primary.loading .spinner {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="registration-header">
             <h1>Player Registration</h1>
-            <p>Join KidFit Cricket Academy and take your game to the next level. Please fill out all required fields carefully.</p>
+            <p>Join Core Cricket Academy and take your game to the next level. Please fill out all required fields carefully.</p>
         </div>
 
         <form class="registration-form" id="playerRegistrationForm">
@@ -469,11 +530,6 @@
                     <div class="form-group">
                         <label for="firstName">First Name <span class="required">*</span></label>
                         <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="middleName">Middle Name</label>
-                        <input type="text" id="middleName" class="form-control" placeholder="Enter middle name">
                     </div>
 
                     <div class="form-group">
@@ -540,33 +596,6 @@
                     </div>
                 </div>
 
-                <div class="pricing-section">
-                    <h3 class="pricing-title"><i class="fas fa-tag"></i> Training Program Pricing</h3>
-                    <div class="pricing-options">
-                        <div class="pricing-option">
-                            <h4>Weekly Program</h4>
-                            <div class="pricing-amount">$275</div>
-                            <div class="pricing-duration">per week</div>
-                        </div>
-                        <div class="pricing-option">
-                            <h4>Monthly Program</h4>
-                            <div class="pricing-amount">$950</div>
-                            <div class="pricing-duration">per month</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Select Training Dates <span class="required">*</span></label>
-                    <button type="button" class="date-selection-btn" id="openDateModal">
-                        <i class="far fa-calendar-alt"></i> Choose Dates
-                    </button>
-                    <div class="selected-dates" id="selectedDatesDisplay">
-                        <p>No dates selected yet</p>
-                        <p><strong>Please select exactly 2 dates between May 15 and August 15</strong></p>
-                    </div>
-                </div>
-
                 <h2 class="form-section-title">Additional Information</h2>
                 <div class="form-group">
                     <label for="notes">Notes for the Coaching Team</label>
@@ -576,42 +605,38 @@
 
                 <div class="form-actions">
                     <button type="reset" class="btn btn-secondary">Clear Form</button>
-                    <button type="submit" class="btn btn-primary">Submit Registration</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        Submit Registration
+                        <span class="spinner"></span>
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 
-    <!-- Date Selection Modal -->
-    <div class="modal" id="dateModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeDateModal">&times;</span>
-            <h3 class="modal-title">Select Training Dates</h3>
-            <p>Please select exactly 2 dates between May 15 and August 15 for your training sessions.</p>
-            
-            <div class="calendar-container">
-                <input type="text" id="trainingDates" style="display: none;">
-            </div>
-            
-            <div class="modal-actions">
-                <button type="button" class="btn btn-secondary" id="cancelDateSelection">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmDates">Confirm Dates</button>
-            </div>
-        </div>
-    </div>
+   
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        
-        // Character counter for notes field
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.22.6/dist/supabase.min.js"></script>
+   
+        <script type="module">
+         import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+        const supabaseUrl = 'https://gishcuvcyydejimhviqz.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdpc2hjdXZjeXlkZWppbWh2aXF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMzNDcwNzMsImV4cCI6MjA1ODkyMzA3M30.l9ac37g7HTds1llPETeCUeVP6bybv-MzEUE0iQMcSkY';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // DOM elements
+        const registrationForm = document.getElementById('playerRegistrationForm');
         const notesField = document.getElementById('notes');
         const charCounter = document.getElementById('charCounter');
+        const dobField = document.getElementById('dob');
+        const ageField = document.getElementById('age');
+        const submitBtn = document.getElementById('submitBtn');
 
+        // Character counter for notes field
         notesField.addEventListener('input', function() {
             const currentLength = this.value.length;
             charCounter.textContent = `${currentLength}/250 characters`;
             
-            // Change color based on length
             if (currentLength > 200) {
                 charCounter.classList.add('warning');
                 charCounter.classList.remove('error');
@@ -624,11 +649,10 @@
         });
 
         // Calculate age from DOB
-        const dobField = document.getElementById('dob');
-        const ageField = document.getElementById('age');
-
         dobField.addEventListener('change', function() {
             const dob = new Date(this.value);
+            if (isNaN(dob.getTime())) return; // Invalid date
+            
             const today = new Date();
             let age = today.getFullYear() - dob.getFullYear();
             const monthDiff = today.getMonth() - dob.getMonth();
@@ -640,137 +664,98 @@
             ageField.value = age > 0 ? age : '';
         });
 
-        // Date selection modal
-        const dateModal = document.getElementById('dateModal');
-        const openDateModalBtn = document.getElementById('openDateModal');
-        const closeDateModalBtn = document.getElementById('closeDateModal');
-        const cancelDateSelectionBtn = document.getElementById('cancelDateSelection');
-        const confirmDatesBtn = document.getElementById('confirmDates');
-        const selectedDatesDisplay = document.getElementById('selectedDatesDisplay');
-
-        // Initialize calendar
-        const datePicker = flatpickr("#trainingDates", {
-            mode: "multiple",
-            minDate: "2025-05-15",
-            maxDate: "2025-08-15",
-            dateFormat: "Y-m-d",
-            defaultDate: [],
-            onChange: function(selectedDates, dateStr, instance) {
-                // Validate exactly 2 dates selected
-                if (selectedDates.length > 2) {
-                    instance.setDate(selectedDates.slice(0, 2), true);
-                    alert('Please select exactly 2 dates');
-                }
-            }
-        });
-
-        // Open modal
-        openDateModalBtn.addEventListener('click', function() {
-            dateModal.style.display = "flex";
-            document.body.style.overflow = "hidden";
-        });
-
-        // Close modal
-        function closeModal() {
-            dateModal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-
-        closeDateModalBtn.addEventListener('click', closeModal);
-        cancelDateSelectionBtn.addEventListener('click', closeModal);
-
-        // Confirm dates
-        confirmDatesBtn.addEventListener('click', function() {
-            const selectedDates = datePicker.selectedDates;
-            
-            if (selectedDates.length !== 2) {
-                alert('Please select exactly 2 dates');
-                return;
-            }
-            
-            // Format dates for display
-            const formattedDates = selectedDates.map(date => {
-                return new Intl.DateTimeFormat('en-US', { 
-                    weekday: 'short', 
-                    month: 'short', 
-                    day: 'numeric',
-                    year: 'numeric'
-                }).format(date);
-            });
-            
-            // Calculate duration between dates
-            const diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-            
-            // Calculate price
-            let price;
-            let durationType;
-            
-            if (diffDays <= 7) {
-                price = 275;
-                durationType = 'Weekly';
-            } else {
-                price = 950;
-                durationType = 'Monthly';
-            }
-            
-            // Update display
-            selectedDatesDisplay.innerHTML = `
-                <p><strong>Selected Dates:</strong> ${formattedDates[0]} and ${formattedDates[1]}</p>
-                <p><strong>Duration:</strong> ${diffDays} days (${durationType} Program)</p>
-                <p><strong>Price:</strong> $${price}</p>
-            `;
-            
-            closeModal();
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(e) {
-            if (e.target === dateModal) {
-                closeModal();
-            }
-        });
-
-        // Form submission
-        const registrationForm = document.getElementById('playerRegistrationForm');
-
-        registrationForm.addEventListener('submit', function(e) {
+        // Form submission with Supabase integration
+        registrationForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Form validation
+            // Validate form
             if (!this.checkValidity()) {
                 alert('Please fill out all required fields correctly.');
                 return;
             }
             
-            // Check if dates are selected
-            const selectedDates = datePicker.selectedDates;
-            if (selectedDates.length !== 2) {
-                alert('Please select exactly 2 training dates');
-                return;
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            try {
+                // Get form values
+                const formData = {
+                    first_name: document.getElementById('firstName').value.trim(),
+                    last_name: document.getElementById('lastName').value.trim(),
+                    dob: document.getElementById('dob').value,
+                    age: parseInt(document.getElementById('age').value) || null,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    jersey_number: parseInt(document.getElementById('jerseyId').value) || null,
+                    parent_name: document.getElementById('parentName').value.trim(),
+                    address: document.getElementById('address').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    notes: document.getElementById('notes').value.trim() || null,
+                    registration_date: new Date().toISOString(),
+                    status: 'Pending'
+                };
+
+                // Insert into Supabase
+                const { data, error } = await supabase
+                    .from('player_registrations')
+                    .insert([formData])
+                    .select();
+
+                if (error) throw error;
+
+                // Success - show confirmation and reset form
+                alert('Registration submitted successfully! We will contact you soon.');
+                
+                // Send confirmation email (optional)
+                await sendConfirmationEmail(formData);
+                
+                // Reset form
+                this.reset();
+                charCounter.textContent = '0/250 characters';
+                charCounter.classList.remove('warning', 'error');
+
+            } catch (error) {
+                console.error('Error submitting registration:', error);
+                alert('There was an error submitting your registration. Please try again or contact support.');
+            } finally {
+                // Remove loading state
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
             }
-            
-            // Form is valid - process submission
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            
-            // Add selected dates to form data
-            formObject['trainingDates'] = selectedDates.map(date => date.toISOString().split('T')[0]);
-            
-            console.log('Form data:', formObject);
-            
-            // Here you would typically send the data to your server
-            alert('Registration submitted successfully! We will contact you soon.');
-            this.reset();
-            charCounter.textContent = '0/250 characters';
-            charCounter.classList.remove('warning', 'error');
-            selectedDatesDisplay.innerHTML = '<p>No dates selected yet</p><p><strong>Please select exactly 2 dates between May 15 and August 15</strong></p>';
-            datePicker.clear();
         });
+
+        // Optional: Function to send confirmation email
+        async function sendConfirmationEmail(formData) {
+            try {
+                const emailContent = `
+                    <h1>Thank you for registering with Core Cricket Academy!</h1>
+                    <p>We've received your registration for ${formData.first_name} ${formData.last_name}.</p>
+                    <h2>Registration Details</h2>
+                    <p><strong>Player Name:</strong> ${formData.first_name} ${formData.last_name}</p>
+                    <p><strong>Date of Birth:</strong> ${formData.dob}</p>
+                    <p><strong>Parent/Guardian:</strong> ${formData.parent_name}</p>
+                    <p><strong>Contact Email:</strong> ${formData.email}</p>
+                    <p><strong>Contact Phone:</strong> ${formData.phone}</p>
+                    <p>Our team will contact you shortly with additional details.</p>
+                    <p>If you have any questions, please reply to this email.</p>
+                `;
+
+                const { data, error } = await supabase
+                    .from('emails')
+                    .insert([{
+                        to: formData.email,
+                        subject: 'Cricket Academy Registration Confirmation',
+                        html_content: emailContent,
+                        status: 'pending'
+                    }]);
+
+                if (error) throw error;
+                console.log('Confirmation email queued for sending');
+            } catch (error) {
+                console.error('Error sending confirmation email:', error);
+            }
+        }
     </script>
 </body>
 </html>
