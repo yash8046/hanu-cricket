@@ -650,19 +650,23 @@
 
         // Calculate age from DOB
         dobField.addEventListener('change', function() {
-            const dob = new Date(this.value);
-            if (isNaN(dob.getTime())) return; // Invalid date
-            
-            const today = new Date();
-            let age = today.getFullYear() - dob.getFullYear();
-            const monthDiff = today.getMonth() - dob.getMonth();
-            
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-                age--;
-            }
-            
-            ageField.value = age > 0 ? age : '';
-        });
+        const dob = new Date(this.value);
+        if (isNaN(dob.getTime())) {
+            ageField.value = '';
+            return; // Invalid date
+        }
+        
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        
+        // Adjust age if birthday hasn't occurred yet this year
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+        
+        ageField.value = age > 0 ? age : '';
+    });
 
         // Form submission with Supabase integration
         registrationForm.addEventListener('submit', async function(e) {
