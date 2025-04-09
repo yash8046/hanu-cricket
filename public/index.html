@@ -1045,7 +1045,7 @@
             <h1 class="hero-title">America Cricket Academy</h1>
             <p class="hero-subtitle">Develop your skills with world-class coaching and state-of-the-art facilities</p>
             <div class="hero-btns">
-                <a href="#programs" class="btn btn-primary" id="joinNowBtn">View Programs</a>
+                <a href="#programs" class="btn btn-primary" >View Programs</a>
                 <a href="form.html" class="btn btn-secondary" >Join Now</a>
             </div>
         </div>
@@ -1736,46 +1736,11 @@ textarea.form-control {
         
         // Calendar Modal functionality
         const calendarModal = document.getElementById('calendarModal');
-        const joinNowBtn = document.getElementById('joinNowBtn');
+     
         const registerNowBtn = document.getElementById('registerNowBtn');
         const closeModal = document.querySelectorAll('.close-modal');
         const confirmDatesBtn = document.getElementById('confirmDates');
-        
-        function openCalendarModal() {
-            calendarModal.style.display = "flex";
-        }
-        
-        function closeCalendarModal() {
-            calendarModal.style.display = "none";
-        }
-        
-        joinNowBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openCalendarModal();
-        });
-        
-        registerNowBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            openCalendarModal();
-        });
-        
-        closeModal.forEach(btn => {
-            btn.addEventListener('click', () => {
-                calendarModal.style.display = "none";
-            });
-        });
-        
-        confirmDatesBtn.addEventListener('click', () => {
-            alert('Thank you for selecting your dates! We will contact you soon to confirm your registration.');
-            closeCalendarModal();
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === calendarModal) {
-                closeCalendarModal();
-            }
-        });
-        
+      
         // Gallery modal functionality
         const galleryItems = document.querySelectorAll('.gallery-item');
         const imageModal = document.getElementById('imageModal');
