@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harrisburg Summer Camp | June & July 2024</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Color System */
+            --primary: #2A5C8D;
+            --primary-dark: #1E446B;
+            --primary-light: #3A7BC8;
+            --secondary: #FFC845;
+            --accent: #4CAF50;
+            --light: #F8F9FA;
+            --light-gray: #E9ECEF;
+            --white: #FFFFFF;
+            --dark: #212529;
+            --text: #495057;
+            --text-light: #6C757D;
+            
+            /* Spacing System */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-xxl: 4rem;
+            
+            /* Typography */
+            --font-base: 1rem;
+            --font-sm: 0.875rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-xxl: 1.5rem;
+            --font-xxxl: 2rem;
+            
+            /* Effects */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        section {
+            padding: var(--space-xxl) 0;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-lg);
+            gap: var(--space-xs);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #FFB400;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+        
+        .btn-accent:hover {
+            background-color: #3D8B40;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(42, 92, 141, 0.9) 0%, rgba(30, 68, 107, 0.95) 100%), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 0 var(--space-md);
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-md);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-xl);
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-header h2 {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .section-header h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 204, 0, 0.1);
+            border-radius: 50%;
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-sm);
+            color: var(--primary);
+        }
+        
+        .feature-text {
+            color: var(--text-light);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background-color: var(--light);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--secondary);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: var(--space-xs) var(--space-md);
+            font-weight: 600;
+            font-size: var(--font-sm);
+            border-bottom-left-radius: var(--border-radius);
+        }
+        
+        .pricing-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+            color: var(--primary);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: var(--space-md) 0;
+            color: var(--primary);
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--space-xl);
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: var(--space-xs) 0;
+            position: relative;
+            padding-left: var(--space-lg);
+        }
+        
+        .pricing-features li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        /* Registration Section */
+        .registration {
+            background-color: var(--white);
+        }
+        
+        .registration-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        
+        .registration-form {
+            background-color: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: var(--space-sm);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: var(--font-base);
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(42, 92, 141, 0.1);
+        }
+        
+        .payment-methods {
+            margin-top: var(--space-xl);
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--border-radius);
+            background-color: var(--light);
+        }
+        
+        .payment-method i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .qr-code {
+            max-width: 200px;
+            border: 1px solid var(--light-gray);
+            padding: var(--space-sm);
+            background: var(--white);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-sm);
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 40px;
+            background-color: #25D366;
+            color: var(--white);
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .registration-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .hero {
+                min-height: 600px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+   
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing Options</h2>
+                <p>Flexible plans to fit your family's summer schedule</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Weekly Rate</h3>
+                    <div class="pricing-price">$275 <span>/ week</span></div>
+                    <ul class="pricing-features">
+                        <li>Perfect for flexible schedules</li>
+                        <li>Choose specific weeks</li>
+                        <li>No long-term commitment</li>
+                        
+                    </ul>
+                    <a href="form.html" class="btn btn-primary">Register Weekly</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Best Value</div>
+                    <h3 class="pricing-title">Monthly Rate</h3>
+                    <div class="pricing-price">$850 <span>/ month</span></div>
+                    <ul class="pricing-features">
+                        <li>Save $250 compared to weekly</li>
+                        <li>Full month of camp</li>
+                      
+                    </ul>
+                    <a href="form.html" class="btn btn-secondary">Register Monthly</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Sibling Discount</h3>
+                    <div class="pricing-price">50% <span>OFF</span></div>
+                    <ul class="pricing-features">
+                        <li>Combine with monthly for max savings</li>
+                        <li>Same weeks required</li>
+                        <li>Available for all plans</li>
+                    </ul>
+                    <a href="form.html" class="btn btn-primary">Register Siblings</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="registration" id="registration">
+        <div class="container">
+            <div class="registration-container">
+                <div class="registration-info">
+                    <h2>Ready to Join Us?</h2>
+                    <p>Secure your child's spot in our summer camp today. Limited spaces available for June and July sessions.</p>
+                    
+                    <div class="payment-methods">
+                        <h3>Payment Methods</h3>
+                        
+                        <div class="payment-method">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <h4>Zelle Payments</h4>
+                                <p>No fees - preferred method</p>
+                                <p>Send to: hr.ameripremsol@gmail.com</p>
+                                <img src="images/zelle.jpeg" alt="Zelle QR Code" class="qr-code">
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+             
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/1234567890?text=Hi%20Camp%20Team,%20I%20have%20a%20question%20about%20registration" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Form submission handler
+        document.getElementById('campRegistration').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                parentName: document.getElementById('parentName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                childName: document.getElementById('childName').value,
+                childAge: document.getElementById('childAge').value,
+                plan: document.getElementById('plan').value
+            };
+            
+            // Here you would typically send to your backend
+            console.log('Registration submitted:', formData);
+            
+            // Redirect to WhatsApp with prefilled message
+            const whatsappMsg = `New Camp Registration:
+            
+Parent: ${formData.parentName}
+Child: ${formData.childName} (Age ${formData.childAge})
+Selected Plan: ${formData.plan}
+
+Contact:
+${formData.phone}
+${formData.email}
+
+Please confirm receipt and next steps.`;
+            
+            const encodedMsg = encodeURIComponent(whatsappMsg);
+            window.open(`https://wa.me/1234567890?text=${encodedMsg}`, '_blank');
+            
+            // Show confirmation
+            alert('Thank you for registering! We\'ve opened WhatsApp to complete your enrollment.');
+        });
+        
+        // Animation triggers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add intersection observers for scroll animations
+            const animateOnScroll = (elements, animation) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add(animation);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                elements.forEach(el => observer.observe(el));
+            };
+            
+            // Animate feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            animateOnScroll(featureCards, 'animate__fadeInUp');
+            
+            // Animate pricing cards with staggered delay
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            pricingCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                animateOnScroll([card], 'animate__fadeInUp');
+            });
+        });
+    </script>
+</body>
+</html>
