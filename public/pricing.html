@@ -612,43 +612,7 @@
     </a>
 
     <script>
-        // Form submission handler
-        document.getElementById('campRegistration').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = {
-                parentName: document.getElementById('parentName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                childName: document.getElementById('childName').value,
-                childAge: document.getElementById('childAge').value,
-                plan: document.getElementById('plan').value
-            };
-            
-            // Here you would typically send to your backend
-            console.log('Registration submitted:', formData);
-            
-            // Redirect to WhatsApp with prefilled message
-            const whatsappMsg = `New Camp Registration:
-            
-Parent: ${formData.parentName}
-Child: ${formData.childName} (Age ${formData.childAge})
-Selected Plan: ${formData.plan}
-
-Contact:
-${formData.phone}
-${formData.email}
-
-Please confirm receipt and next steps.`;
-            
-            const encodedMsg = encodeURIComponent(whatsappMsg);
-            window.open(`https://wa.me/1234567890?text=${encodedMsg}`, '_blank');
-            
-            // Show confirmation
-            alert('Thank you for registering! We\'ve opened WhatsApp to complete your enrollment.');
-        });
-        
+      
         // Animation triggers
         document.addEventListener('DOMContentLoaded', function() {
             // Add intersection observers for scroll animations
